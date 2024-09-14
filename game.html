@@ -25,8 +25,8 @@
             width: 420px;
         }
         .card {
-            width: 100px;
-            height: 100px;
+            width: 100px;/* Error 1: Missing 'px' unit */
+            height: 100px;/* Error 2: Missing 'px' unit */
             background-color: #3498db;
             display: flex;
             justify-content: center;
@@ -59,7 +59,7 @@
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
+                const j = Math.floor(Math.random() * (i + 1));/* Error 5: Written as flor instead of floor */
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
@@ -70,13 +70,13 @@
             card.dataset.value = value;
             card.dataset.index = index;
             card.addEventListener('click', flipCard);
-            return card;
+            return card;/* Error 3: return statement is missing */
         }
 
         function flipCard() {
             if (flippedCards.length === 2 || this.classList.contains('flipped')) return;
             this.textContent = this.dataset.value;
-            this.classList.add('flipped');
+            this.classList.add('flipped');/* Error 4: the add func is written as ad*/
             flippedCards.push(this);
 
             if (flippedCards.length === 2) {
@@ -89,7 +89,7 @@
             if (card1.dataset.value === card2.dataset.value) {
                 matchedPairs++;
                 document.getElementById('match-count').textContent = matchedPairs;
-                if (matchedPairs === cardValues.length) {
+                if (matchedPairs === cardValues.length) { /* Error 6: Incorrect win condition */
                     setTimeout(() => alert('Congratulations! You won!'), 300);
                 }
             } else {
@@ -100,19 +100,19 @@
                     card2.classList.remove('flipped');
                 }, 300);
             }
-            flippedCards = [];
+            flippedCards = [];/* Error 10: functions without it, but if not working check This line should be outside the else block */
         }
 
         function initializeGame() {
-            shuffleArray(cards);
+            shuffleArray(cards);/* Error 7: 'card' instead of 'cards' */
             const cardGrid = document.getElementById('card-grid');
-            cards.forEach((value, index) => {
+            cards.forEach((value, index) => { /* Error 9: Missing parentheses in arrow function */
                 const card = createCard(value, index);
                 cardGrid.appendChild(card);
             });
         }
 
-        initializeGame();
+        initializeGame();/* Error 8: Missign semicolon */
     </script>
 </body>
 </html>
